@@ -1,0 +1,36 @@
+.all-container {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .navigation-part {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+    .rendered-page {
+      width: 100%;
+      max-width: 800px;
+      form {
+        input {
+            padding: 8px;
+        }
+        button {
+          margin-left: 12px;
+        }
+      }
+    }
+    nav {
+      display: flex;
+      flex-direction: column;
+      button {
+        margin: 4px;
+
+        &.active {
+          outline: 4px auto #fff;
+        }
+      }
+    }
+  }
+}
