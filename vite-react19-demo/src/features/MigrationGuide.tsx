@@ -14,11 +14,10 @@ export default defineConfig({
   return (
     <div>
       <h2>🧭 React 19 Migration Guide (Vite ile)</h2>
-
       <h2>🔧 1. Gereksinimler</h2>
       <ul>
         <li>
-          <strong>Node.js:</strong>{" "}
+          <strong>Node.js:</strong>
           <code>≥ 18.17.0 (20 &gt; best result )</code>
         </li>
         <li>

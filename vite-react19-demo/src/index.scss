@@ -14,7 +14,7 @@
       max-width: 800px;
       form {
         input {
-            padding: 8px;
+          padding: 8px;
         }
         button {
           margin-left: 12px;
@@ -28,9 +28,31 @@
         margin: 4px;
 
         &.active {
-          outline: 4px auto #fff;
+          border: 2px solid #7328ec;
         }
       }
     }
   }
+}
+
+pre {
+  border: 2px solid #068b4d;
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+input {
+  margin-right: 12px;
+  padding: 4px;
+}
+
+nav button {
+  border: 1px solid #4b1d96;
+}
+
+button {
+  border: 1px solid #068b4d;
+  border-radius: 8px;
+  margin: 12px 0;
+  margin-right: 8px;
 }

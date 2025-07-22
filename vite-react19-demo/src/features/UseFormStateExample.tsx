@@ -36,7 +36,7 @@ export default function UseFormState() {
         <div
           style={{
             flex: 1,
-            border: "2px solid #00ff88",
+            border: "2px solid #068b4d",
             padding: "1rem",
             borderRadius: "8px",
             background: "#111",
@@ -58,7 +58,7 @@ export default function UseFormState() {
         <div
           style={{
             flex: 1,
-            border: "2px solid #00ff88",
+            border: "2px solid #068b4d",
             padding: "1rem",
             borderRadius: "8px",
             background: "#111",

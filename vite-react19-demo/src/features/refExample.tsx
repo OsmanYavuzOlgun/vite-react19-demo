@@ -11,7 +11,7 @@ const TargetSection = forwardRef<HTMLDivElement>((_, ref) => (
     ref={ref}
     style={{
       padding: "2rem",
-      border: "2px solid #00ff88",
+      border: "2px solid #068b4d",
       borderRadius: "8px",
       backgroundColor: "transparent",
     }}
@@ -27,7 +27,7 @@ export default function RefDomExampleOld() {
   const handleScroll = () => {
     if (sectionRef.current) {
       sectionRef.current.scrollIntoView({ behavior: "smooth" });
-      sectionRef.current.style.backgroundColor = "#00ff88";
+      sectionRef.current.style.backgroundColor = "#068b4d";
       sectionRef.current.style.transition = "background-color 1s";
 
       setTimeout(() => {
@@ -55,7 +55,7 @@ export default function RefDomExampleOld() {
   const code2 = `const handleScroll = () => {
     if (sectionRef.current) {
       sectionRef.current.scrollIntoView({ behavior: "smooth" });
-      sectionRef.current.style.backgroundColor = "#00ff88";
+      sectionRef.current.style.backgroundColor = "#068b4d";
       sectionRef.current.style.transition = "background-color 1s";
 
       setTimeout(() => {
@@ -80,7 +80,7 @@ export default function RefDomExampleOld() {
         ref={sectionRef}
         style={{
           padding: "2rem",
-          border: "2px solid #00ff88",
+          border: "2px solid #068b4d",
           borderRadius: "8px",
           backgroundColor: "transparent",
         }}
@@ -93,7 +93,7 @@ export default function RefDomExampleOld() {
   const handleScroll = () => {
     if (sectionRef.current) {
       sectionRef.current.scrollIntoView({ behavior: "smooth" });
-      sectionRef.current.style.backgroundColor = "#00ff88";
+      sectionRef.current.style.backgroundColor = "#068b4d";
       sectionRef.current.style.transition = "background-color 1s";
 
       setTimeout(() => {
@@ -103,7 +103,7 @@ export default function RefDomExampleOld() {
   };
 
   return (
-    <div style={{ padding: "2rem" }}>
+    <div>
       <h2>✅ ref ile DOM Etkileşimi</h2>
       <p>
         Bu örnekte bir butona tıklanıldığında, belirli bir bölüme scroll yapılır
@@ -140,7 +140,7 @@ export default function RefDomExampleOld() {
         ref={sectionRef}
         style={{
           padding: "2rem",
-          border: "2px solid #00ff88",
+          border: "2px solid #068b4d",
           borderRadius: "8px",
           backgroundColor: "transparent",
         }}
