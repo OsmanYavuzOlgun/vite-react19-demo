@@ -145,8 +145,7 @@ export default function RefDomExampleOld() {
           backgroundColor: "transparent",
         }}
       >
-        <h3>🎯 Hedef Bölüm</h3>
-        <p>Scroll ile bu alana geldin ve geçici olarak renklendi!</p>
+        <h3>🎯 hello!</h3>
       </div>
     </div>
   );

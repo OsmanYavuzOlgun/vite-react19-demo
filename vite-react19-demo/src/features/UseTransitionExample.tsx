@@ -25,13 +25,14 @@ const UseTransitionExample = () => {
         useTransition, kullanıcı arabirimini engellemeden, yani takılmadan,
         tepki vermeyi geciktirmeden, daha az öncelikli işleri arka planda
         yapmamızı sağlayan bir React Hook’tur.
+        <hr />
+        const [isPending, startTransition] = useTransition();
         <br />
         <br />
-        isPending → Şu anda bekleyen (arka planda yapılan) bir geçiş var mı?
+        isPending → Şu anda bekleyen (arka planda yapılan) bir geçiş var mı? (loading)
         <br />
         startTransition(fn) → React’e bu işin önceliksiz olduğunu bildirir.
-        <br />
-        <br />
+        <hr />
         Çok büyük bir listeyi filtrelerken, ağır UI ve grafik işlerinde, sayfa
         içerisinde ağır input işlemlerinde kullanılır. Normal loading işlerine
         göre input çok daha hızlı tepki verir ve düşük öncelikli işi önceden
@@ -46,7 +47,7 @@ const UseTransitionExample = () => {
       />
       {isPending && <p>Updating list... (low priority)</p>}
       <ul>
-        {list.slice(0, 20).map((item, i) => (
+        {list.slice(0, 80).map((item, i) => (
           <li key={i}>{item}</li>
         ))}
       </ul>
