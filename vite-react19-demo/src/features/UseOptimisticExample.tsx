@@ -69,7 +69,15 @@ export default function UseOptimisticExample() {
   const [messages, setMessages] = useState<Message[]>([
     { text: "Hello", sending: false },
   ]);
-
+  const code4 = `const [optimisticState, addOptimistic] = useOptimistic(
+    state,
+    // updateFn
+    (currentState, optimisticValue) => {
+      // merge and return new state
+      // with optimistic value
+    }
+  );
+`;
   const [error, setError] = useState<string | null>(null);
 
   async function sendMessageAction(formData: FormData) {
@@ -94,7 +102,7 @@ export default function UseOptimisticExample() {
 
   return (
     <div>
-      <h2>✅ useOptimistic with Error Handling</h2>
+      <h2>✅ useOptimistic</h2>
       <div style={{ marginBottom: 20, fontWeight: 600 }}>
         useOptimistic, async (örneğin API) işlemi devam ederken kullanıcıya
         farklı bir geçici durum göstermenizi sağlayan bir React hook'udur.
@@ -103,6 +111,18 @@ export default function UseOptimisticExample() {
         kullanıcı bir şey yaptığında sonucu beklemeden “olmuş gibi” gösterirsin.
         İşlem tamamlanınca gerçek sonuçla değiştirilir.
       </div>
+      <pre
+        style={{
+          background: "#1e1e1e",
+          color: "#f8f8f2",
+          padding: "1rem",
+          borderRadius: "8px",
+          overflowX: "auto",
+          fontSize: "0.9rem",
+        }}
+      >
+        <code>{code4}</code>
+      </pre>
       {error && <div style={{ color: "red", marginBottom: 10 }}>{error}</div>}
       <Thread messages={messages} sendMessageAction={sendMessageAction} />
     </div>

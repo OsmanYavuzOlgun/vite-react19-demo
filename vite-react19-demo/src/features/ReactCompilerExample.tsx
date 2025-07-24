@@ -8,12 +8,25 @@ export default function ReactCompilerExample() {
   const code3 = `const inputRef2 = useRef(null);
 
     useEffect(() => {
-    if (inputRef.current) {
-      inputRef.current.focus();
+    if (inputRef2.current) {
+      inputRef2.current.focus();
     }
   }, [count]);
   `;
   const code4 = `<input ref={inputRef2} placeholder="Bu input otomatik focuslanır" />`;
+  const code5 = `const CustomInput = React.forwardRef((props, ref) => {
+  return <input ref={ref} placeholder="Bu input otomatik focuslanır" {...props} />;
+  });`;
+
+  const code6 = `const inputRef2 = useRef(null);
+
+  useEffect(() => {
+    if (inputRef2.current) {
+      inputRef2.current.focus();
+    }
+  }, [count]);
+
+  <CustomInput ref={inputRef2} />`;
 
   // Normalde useMemo ile yapılırdı:
   const doubled = numbers.map((n) => n * 2); // React Compiler bunu optimize edecek (React 19)
@@ -33,7 +46,7 @@ export default function ReactCompilerExample() {
 
   return (
     <div>
-      <h2>✅ React Compiler & forwardRef</h2>
+      <h2>✅ React Compiler & ref</h2>
       <p>
         React 19 ile gelen <strong>React Compiler</strong> sayesinde, bileşen
         içindeki sabit hesaplamalar (örneğin <code>map</code>) artık otomatik
@@ -87,6 +100,33 @@ export default function ReactCompilerExample() {
       <input ref={inputRef} placeholder="Bu input otomatik focuslanır" />
       <input ref={inputRef2} placeholder="Bu input otomatik focuslanır" />
 
+      <pre
+        style={{
+          background: "#1e1e1e",
+          color: "#f8f8f2",
+          padding: "1rem",
+          borderRadius: "8px",
+          overflowX: "auto",
+          fontSize: "0.9rem",
+        }}
+      >
+        <code>{code5}</code>
+      </pre>
+      <pre
+        style={{
+          background: "#1e1e1e",
+          color: "#f8f8f2",
+          padding: "1rem",
+          borderRadius: "8px",
+          overflowX: "auto",
+          fontSize: "0.9rem",
+        }}
+      >
+        <code>{code6}</code>
+      </pre>
+      <hr />
+      <br />
+      <hr />
       <pre
         style={{
           background: "#1e1e1e",

@@ -1,22 +1,42 @@
 import React, { useState, useTransition } from "react";
 
+// Sahte bir API işlemi simülasyonu
+const updateQuantity = (newQuantity: number): Promise<number> => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(newQuantity);
+    }, 1000); // 1 saniye gecikmeli
+  });
+};
+
 const UseTransitionExample = () => {
-  const [input, setInput] = useState("");
-  const [list, setList] = useState<string[]>([]);
+  const [quantity, setQuantity] = useState(1);
   const [isPending, startTransition] = useTransition();
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setInput(value);
+  const updateQuantityAction = async (newQuantity: number) => {
+    // Arka planda async işlemi başlat
+    startTransition(async () => {
+      const savedQuantity = await updateQuantity(newQuantity);
 
-    startTransition(() => {
-      const newList = Array.from(
-        { length: 5000 },
-        (_, i) => `${value} - item ${i}`
-      );
-      setList(newList);
+      // State güncellemesini ikinci kez transition ile sarmala
+      startTransition(() => {
+        setQuantity(savedQuantity);
+      });
     });
   };
+
+  const code4 = `const [quantity, setQuantity] = useState(1);
+const [isPending, startTransition] = useTransition();
+
+const updateQuantityAction = async (newQuantity) => {
+  startTransition(async () => {
+    const savedQuantity = await updateQuantity(newQuantity);
+
+    startTransition(() => {
+      setQuantity(savedQuantity);
+    });
+  });
+};`;
 
   return (
     <div>
@@ -29,7 +49,8 @@ const UseTransitionExample = () => {
         const [isPending, startTransition] = useTransition();
         <br />
         <br />
-        isPending → Şu anda bekleyen (arka planda yapılan) bir geçiş var mı? (loading)
+        isPending → Şu anda bekleyen (arka planda yapılan) bir geçiş var mı?
+        (loading)
         <br />
         startTransition(fn) → React’e bu işin önceliksiz olduğunu bildirir.
         <hr />
@@ -40,17 +61,33 @@ const UseTransitionExample = () => {
         bulunan loading tarafında iki işte aynı anda yapıldığı için daha yavaş
         olur ve kasma meydana gelir.
       </div>
-      <input
-        value={input}
-        onChange={handleChange}
-        placeholder="Type to filter..."
-      />
-      {isPending && <p>Updating list... (low priority)</p>}
-      <ul>
-        {list.slice(0, 80).map((item, i) => (
-          <li key={i}>{item}</li>
-        ))}
-      </ul>
+
+      <pre
+        style={{
+          background: "#1e1e1e",
+          color: "#f8f8f2",
+          padding: "1rem",
+          borderRadius: "8px",
+          overflowX: "auto",
+          fontSize: "0.9rem",
+        }}
+      >
+        <code>{code4}</code>
+      </pre>
+
+      <div style={{ marginTop: 24 }}>
+        <h3>🛒 Checkout</h3>
+        <button onClick={() => updateQuantityAction(quantity + 1)}>
+          Add One
+        </button>
+        <hr />
+        <p>
+          <strong>Quantity:</strong> {quantity}
+        </p>
+        {isPending && (
+          <p style={{ color: "orange" }}>⏳ Updating quantity...</p>
+        )}
+      </div>
     </div>
   );
 };

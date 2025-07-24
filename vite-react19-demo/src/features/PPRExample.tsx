@@ -1,4 +1,20 @@
 export default function UseComponent() {
+  const code3 = `export default async function Home() {
+  const user = await getUserFromDB(); // ❗ Burası sayfanın render’ını tamamen bekletiyor
+
+  return (
+    <div>
+      <h1>Partial Pre-rendering yok</h1>
+      <p>Bu metin de kullanıcı bilgisi de beraber gelir.</p>
+      <p>Hoş geldin, {user.name}!</p>
+    </div>
+  );
+}
+
+async function getUserFromDB() {
+  await new Promise((r) => setTimeout(r, 1000)); // Yavaş sorgu gibi
+  return { name: "Yavuz" };
+}`;
   const code = `import { Suspense } from "react";
 import { UserGreeting } from "./UserGreeting";
 
@@ -36,6 +52,20 @@ async function getUserFromDB() {
         (örneğin kullanıcıya özel bilgiler) arka planda yüklenir. Bu,
         performansı artırır ve kullanıcı deneyimini geliştirir.
       </p>
+      <div>eski hali</div>
+      <pre
+        style={{
+          background: "#1e1e1e",
+          color: "#f8f8f2",
+          padding: "1rem",
+          borderRadius: "8px",
+          overflowX: "auto",
+          fontSize: "0.9rem",
+        }}
+      >
+        <code>{code3}</code>
+      </pre>
+      <div>yeni hali:</div>
       <pre
         style={{
           background: "#1e1e1e",

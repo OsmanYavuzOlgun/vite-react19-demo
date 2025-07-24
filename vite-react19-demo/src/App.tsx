@@ -91,13 +91,13 @@ function App() {
             className={page === "useFormState" ? "active" : ""}
             onClick={() => setPage("useFormState")}
           >
-            🧪 useFormState
+            ✅ useFormState
           </button>
           <button
             className={page === "useActionState" ? "active" : ""}
             onClick={() => setPage("useActionState")}
           >
-            🧪 useActionState
+            ✅ useActionState
           </button>
           <button
             className={page === "serverAction" ? "active" : ""}
@@ -105,12 +105,12 @@ function App() {
           >
             ❌ Server Action
           </button>
-          <button
+          {/* <button
             className={page === "jsxUse" ? "active" : ""}
             onClick={() => setPage("jsxUse")}
           >
-            ❌ JSX &lt;use&gt;
-          </button>
+            ❌ use()
+          </button> */}
           <button
             className={page === "defer" ? "active" : ""}
             onClick={() => setPage("defer")}

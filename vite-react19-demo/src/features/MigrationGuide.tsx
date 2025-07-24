@@ -4,12 +4,29 @@ export default function MigrationGuide() {
   const codeInstallReact = `npm install react@19 react-dom@19`;
 
   const codeViteConfig = `// vite.config.ts
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import rollupNodePolyFill from "rollup-plugin-node-polyfills";
 
 export default defineConfig({
   plugins: [react()],
-});`;
+  define: {
+    global: "globalThis",
+  },
+  optimizeDeps: {
+    esbuildOptions: {
+      define: {
+        global: "globalThis",
+      },
+    },
+  },
+  build: {
+    rollupOptions: {
+      plugins: [rollupNodePolyFill()],
+    },
+  },
+});
+;`;
 
   return (
     <div>
@@ -22,9 +39,6 @@ export default defineConfig({
         </li>
         <li>
           <strong>React:</strong> <code>^19.0.0</code>
-        </li>
-        <li>
-          <strong>TypeScript (ops.):</strong> <code>≥ 5.1</code>
         </li>
       </ul>
 
@@ -41,11 +55,7 @@ export default defineConfig({
       <h2>📘 Not:</h2>
       <ul>
         <li>
-          JSX <code>&lt;use&gt;</code> özelliği için <code>@types/react</code>
-          'in güncel (ya da canary) versiyonuna ihtiyacın olabilir.
-        </li>
-        <li>
-          <strong>Server Actions, use, defer ve partial pre rendering</strong>
+          <strong>Server Actions, defer ve partial pre rendering</strong>
           yalnızca <strong>Next.js App Router</strong> ortamında çalışır.
         </li>
       </ul>
