@@ -1,29 +1,9 @@
 export default function UseComponent() {
   const code = `
-    export default function UseComponent() {
-    const message = fetchMessage();
+import React, { useEffect, useState } from "react";
 
-    return (
-    <div>
-        <h2><use></h2>
-        <p>
-        Mesaj: <use value={message} fallback={<em>Yükleniyor...</em>} />
-        </p>
-    </div>
-    );
-
-    async function fetchMessage() {
-        await new Promise((r) => setTimeout(r, 2000));
-        return "Merhaba bu mesaj <use> ile geldi!";
-    }
-}`;
-
-  const code2 = `
- import React, { useEffect, useState } from "react";
-import { fetchMessage } from "./fetchMessage";
-
-export default function UseComponentOld() {
-  const [message, setMessage] = useState<string | null>(null);
+export default function UseComponent() {
+  const [message, setMessage] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -41,21 +21,48 @@ export default function UseComponentOld() {
 
   return (
     <div>
-      <h2>🕰️ JSX &lt;use&gt; Yokken</h2>
+      <h2>⏰ useEffect + useState ile</h2>
       <p>{loading ? <em>Yükleniyor...</em> : message}</p>
     </div>
   );
-}
-`;
+
+  async function fetchMessage() {
+    await new Promise((r) => setTimeout(r, 2000));
+    return "Merhaba bu mesaj useEffect ile geldi!";
+  }
+}`;
+
+  const code2 = `
+import { use } from "react";
+
+export default function UseComponent() {
+  const message = use(fetchMessage());
+
   return (
     <div>
-      <h2>❌ JSX &lt;use&gt;</h2>
+      <h2>use() örneği</h2>
       <p>
-        React 19 ile gelen <use></use> elementi, bir Promise (veya async değer)
-        tamamlanana kadar otomatik olarak bir “loading” fallback göstermenizi
-        sağlar.
+        Mesaj: {message}
       </p>
-      <span> use kullanarak:</span>
+    </div>
+  );
+
+  async function fetchMessage() {
+    await new Promise((r) => setTimeout(r, 2000));
+    return "Merhaba bu mesaj use() ile geldi!";
+  }
+}`;
+  return (
+    <div>
+      <h2>❌ use()</h2>
+      <p>
+        use() fonksiyonu, React 19 ile gelen ve useEffect + useState ihtiyacını
+        ortadan kaldıran yeni bir özellik. Promise dönen async işlemleri
+        doğrudan render içinde kullanmamıza olanak tanır. Kod daha sade,
+        okunabilir ve senkron gibi yazılabilir hale gelir. Özellikle veri
+        bekleme ve gösterme işlemlerini basitleştirir.
+      </p>
+      <span> eski hali:</span>
       <pre
         style={{
           background: "#1e1e1e",
@@ -68,7 +75,7 @@ export default function UseComponentOld() {
       >
         <code>{code}</code>
       </pre>
-      <span> eski hali:</span>
+      <span> use kullanarak:</span>
       <pre
         style={{
           background: "#1e1e1e",
